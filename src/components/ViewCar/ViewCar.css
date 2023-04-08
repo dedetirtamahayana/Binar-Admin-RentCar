@@ -1,0 +1,32 @@
+.card-btn{
+    width: 40%;
+}
+svg.btn-icon {
+    position: relative;
+    top: -2px;
+}
+.image-modal{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
+.modal-text{
+    margin: 0px;
+    padding-bottom: 16px;
+}
+svg.icon-btn-add {
+    position: relative;
+    margin-right: 5px;
+}
+.car-container {
+    margin-left: 350px;
+    margin-top: 30px;
+    width: 1111px;
+}
+.btn-fillter-car{
+    background: #fff;
+    color: #aeb7e1;
+    border-color: #aeb7e1;
+    border-radius: 2px;
+}

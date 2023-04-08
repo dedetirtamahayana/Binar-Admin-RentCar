@@ -1,0 +1,50 @@
+.containerAddCar {
+    min-height: 100vh;
+    background: #f4f5f7;
+}
+.colAddcar {
+    width: 20.14%;
+    min-width: 218px;
+    max-width: 290px;
+}
+.car-container {
+    margin-left: 350px;
+    margin-top: 30px;
+    width: 1111px;
+}
+.forminput {
+    font-family: Arial;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.57143;
+    border-radius: 2px;
+}
+.font-template {
+    max-width: 494px;
+    font-family: Arial;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+.btnSave{
+    padding: 8px 12px;
+    height: 36px;
+    font-family: Arial;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.57143;
+    background-color: #0d28a6;
+    border-radius: 2px;
+    color: #0d28a6;
+}
+.btnCancel{
+    padding: 8px 12px;
+    height: 36px;
+    font-family: Arial;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.57143;
+    border-radius: 2px;
+    background-color: #fff;
+    color: #0d28a6;
+}
