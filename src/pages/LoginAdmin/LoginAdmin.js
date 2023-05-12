@@ -45,7 +45,7 @@ const LoginAdmin = () => {
             setShowMsg ('Selamat Anda Berhasil Login !!!')
             setIsToastShow (true);
             setTimeout(() => {
-              navigate("/dashboard");
+              navigate("/view-car");
             }, 2000);
           })
           .catch((error)=>{

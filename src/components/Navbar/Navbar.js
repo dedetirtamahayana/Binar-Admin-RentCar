@@ -20,9 +20,9 @@ import { useDispatch } from 'react-redux';
 
 const NavbarAdmin = ({ currentPage }) => {
   const navbarRef = useRef();
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
+  // const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [navPanelClass, setNavPanelClass] = useState("");
-  const [navMenuClass, setNavMenuClass] = useState("");
+  // const [navMenuClass, setNavMenuClass] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -70,17 +70,17 @@ const NavbarAdmin = ({ currentPage }) => {
   // };
   const[isOpen ,setIsOpen] = useState(false);
   const toggle = () => setIsOpen (!isOpen);
-  const displayData = () => {
-    if (currentPage === "view-car") {
-      navigate("/dashboard");
-    }
-  };
+  // const displayData = () => {
+  //   if (currentPage === "view-car") {
+  //     navigate("/dashboard");
+  //   }
+  // };
 
-  const displayCars = () => {
-    if (currentPage === "dashboard") {
-      navigate("/view-car");
-    }
-  };
+  // const displayCars = () => {
+  //   if (currentPage === "dashboard") {
+  //     navigate("/view-car");
+  //   }
+  // };
 
   return (
     <>
@@ -88,18 +88,18 @@ const NavbarAdmin = ({ currentPage }) => {
         className={`bg-white navigation-panel position-absolute h-100 ${classes.navPanelClass} ${navPanelClass}`}>
         {currentPage === "dashboard" && (
           <div className="dashboard-menu w-100 flex-column">
-            <p 
+            {/* <p 
             style={{display: isOpen ? "block" : "none"}}
             className={`w-100 ps-4 pe-3 ${classes.titleDashboard}`}>
               DASHBOARD
-            </p>
-            <ul className={`p-0 ${classes.listDashboard}`}>
+            </p> */}
+            {/* <ul className={`p-0 ${classes.listDashboard}`}>
               <li
                 style={{display: isOpen ? "block" : "none"}}
                 className={`ps-4 pe-3 ${classes.listNameDashboard}`}>
                 Dashboard
               </li>
-            </ul>
+            </ul> */}
           </div>
         )}
         {currentPage === "view-car" && (
@@ -116,7 +116,9 @@ const NavbarAdmin = ({ currentPage }) => {
         )}
       </div>
       <Nav
-        className={`navigation-menu position-absolute flex-column ${classes.navMenuClass} ${navMenuClass}`}>
+        className={`navigation-menu position-absolute flex-column ${classes.navMenuClass}
+        
+         `}>
         <Nav.Link
           className={`${
             classes.navigationTab
@@ -124,7 +126,8 @@ const NavbarAdmin = ({ currentPage }) => {
             currentPage === "dashboard" && "selected"
           }`}
           style={{ height: "64px" }}
-          onClick={displayData}>
+          // onClick={displayData}
+          >
           <img src={iconDashboard} alt="dashboard" />
           <p className={`m-0 text-white ${classes.navTitle}`}>Dashboard</p>
         </Nav.Link>
@@ -133,7 +136,8 @@ const NavbarAdmin = ({ currentPage }) => {
             currentPage === "cars" && "selected"
           }`}
           style={{ height: "64px" }}
-          onClick={displayCars}>
+          // onClick={displayCars}
+          >
           <img src={iconCars} alt="cars" />
           <p className={`m-0 text-white ${classes.navTitle}`}>Cars</p>
         </Nav.Link>
