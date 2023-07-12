@@ -3,7 +3,7 @@ import dashboardSlice from "./actions/dashboard-slice";
 import tableSlice from "./actions/table-slice";
 import addSlice from "./actions/add-slice";
 import viewcarSlice from "./actions/view-car-slice";
-import authAdminSlice from "./actions/admin-auth-slice"
+import authAdminSlice from "./actions/admin-auth-slice";
 import editSlice from "./actions/edit-slice";
 
 
@@ -18,4 +18,4 @@ export const Store = configureStore({
         editcarStore : editSlice.reducer
         
     }
-})
+});

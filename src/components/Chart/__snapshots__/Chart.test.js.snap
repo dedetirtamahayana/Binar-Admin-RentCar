@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chart.js should work as expected Chart.js should match with snapshot 1`] = `
+<div
+  className="container chart-section"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col"
+    >
+      <img
+        className="text-img "
+        src="title-square.png"
+      />
+      <p
+        className="fw-bold title-img"
+      >
+        Rented Car Data Visualization
+      </p>
+      <div
+        className="detailSelect col"
+      >
+        Month
+      </div>
+      <form
+        className="d-flex mb-5"
+      >
+        <select
+          aria-label="Default select example"
+          className="form-select"
+          onChange={[Function]}
+          style={
+            Object {
+              "borderRadius": 2,
+              "fontSize": 12,
+              "width": 150,
+            }
+          }
+        >
+          <option
+            disabled={true}
+          >
+            Open this select menu
+          </option>
+          <option
+            value={1}
+          >
+            January
+             - 2022
+          </option>
+          <option
+            value={2}
+          >
+            February
+             - 2022
+          </option>
+          <option
+            value={3}
+          >
+            March
+             - 2022
+          </option>
+          <option
+            value={4}
+          >
+            April
+             - 2022
+          </option>
+          <option
+            value={5}
+          >
+            May
+             - 2022
+          </option>
+          <option
+            value={6}
+          >
+            June
+             - 2022
+          </option>
+          <option
+            value={7}
+          >
+            July
+             - 2022
+          </option>
+          <option
+            value={8}
+          >
+            August
+             - 2022
+          </option>
+          <option
+            value={9}
+          >
+            September
+             - 2022
+          </option>
+          <option
+            value={10}
+          >
+            October
+             - 2022
+          </option>
+          <option
+            value={11}
+          >
+            November
+             - 2022
+          </option>
+          <option
+            value={12}
+          >
+            December
+             - 2022
+          </option>
+        </select>
+        <br />
+        <button
+          className="btnGo btn btn-outline-none"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Go
+        </button>
+      </form>
+    </div>
+    <div
+      className="mixed-chart"
+    >
+      <div
+        className="chart-mobil"
+      />
+    </div>
+  </div>
+</div>
+`;

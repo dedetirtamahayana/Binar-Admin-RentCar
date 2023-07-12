@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@jest/globals": "^29.5.0",
     "@react-icons/all-files": "^4.1.0",
     "@react-pdf-viewer/core": "^3.11.0",
     "@react-pdf-viewer/default-layout": "^3.11.0",
@@ -11,7 +12,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "antd": "^5.2.3",
     "axios": "^1.1.2",
     "bootstrap": "^5.2.2",
     "date-fns": "^2.29.3",
@@ -34,6 +34,7 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.29.0",
     "react-tailwindcss-datepicker": "^1.4.2",
+    "react-test-renderer": "^18.2.0",
     "recharts": "^2.4.3",
     "rsuite": "^5.28.0",
     "rsuite-daterangepicker": "^3.0.5",
@@ -43,14 +44,38 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --env=jsdom --watchAll=false",
+    "test:update": "react-scripts test --coverage --updateSnapshot --env=jsdom --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/index.js",
+      "<rootDir>/src/reportWebVitals.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   },
   "browserslist": {
     "production": [

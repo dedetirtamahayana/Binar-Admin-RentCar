@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Form, Button, Col, Container, Row} from 'react-bootstrap';
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { getEditData,editData } from "../../store/actions/edit-slice";
 import Navbar from "../../components/Navbar/Navbar";
 import iconUpload from "../../assets/image/fi_upload.svg";
@@ -9,7 +9,7 @@ import iconUpload from "../../assets/image/fi_upload.svg";
 const EditCar = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const dataEdit = useSelector(state => state.editcarStore.Data)
+    const dataEdit = useSelector(state => state.editcarStore.Data);
     const getDataFromApi = ()=>{
         setCarData({
           name: dataEdit.name,
@@ -17,10 +17,10 @@ const EditCar = () => {
           price: dataEdit.price,
           status : dataEdit.status,
           image : dataEdit.image
-        })
+        });
 
 
-    }
+    };
     const [carData, setCarData] = useState ({
       name: '',
       category:'',
@@ -28,80 +28,61 @@ const EditCar = () => {
       status :'false',
       image: '[0]'
 
-    })
-
-    // const [name, setName] = useState('');
-    // const [category, setCategory] = useState('');
-    // const [price, setPrice] = useState('');
-    // const [status, setStatus] = useState('');
-    // const [image, setImage] = useState('');
-
-            // setName(dataEdit.name);
-        // setCategory(dataEdit.category);
-        // setPrice(dataEdit.price);
-        // setStatus(dataEdit.status);
-    
+    });
     
     const handleName = (e) => {
       setCarData((prevState)=>{
         return {
           ...prevState,
           name:  e.target.value
-        }
-    })
+        };
+    });
     };
     const handleKetegori = (e) => {
      setCarData((prevState)=>{
         return {
           ...prevState,
           category:  e.target.value
-        }
-    })
+        };
+    });
     };
     const handlePrice = (e) => {
       setCarData((prevState)=>{
         return {
           ...prevState,
           price:  e.target.value
-        }
-    })
+        };
+    });
     };
-    const handleStatus = (e) => {
-      setCarData((prevState)=>{
-        return {
-          ...prevState,
-          status:  e.target.value
-        }
-    })
-    };
+
     const handleImage = (e) => {
       setCarData((prevState)=>{
         return {
           ...prevState,image:  e.target.files[0]
-        }
-    })
+        };
+    });
     };
     const handleEdit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
       console.log("succes");
       dispatch(editData({id :params.id,name: carData.name, category: carData.category, price: carData.price, status:carData.status, image:carData.image}))
         .unwrap()
         .then(() => {
-          alert ("succes Edit mobil")
+          alert ("succes Edit mobil");
         })
         .catch((error)=>{
-          alert ("gagal")
+          alert ("gagal");
   
         });
     };
 
     useEffect(() => {
-        dispatch(getEditData({id:params.id}))
-    }, [])
+        dispatch(getEditData({id:params.id}));
+    }, []);
 
     useEffect (()=>{
-      getDataFromApi ();
-    },[dataEdit])
+      getDataFromApi();
+    },[dataEdit]);
 
     const navigate = useNavigate();
     const backToCars = () => {
@@ -274,7 +255,7 @@ const EditCar = () => {
             </Form>
         </Container>
 
-  )
-}
+  );
+};
 
-export default EditCar
+export default EditCar;

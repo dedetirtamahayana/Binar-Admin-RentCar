@@ -1,23 +1,23 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import axios from 'axios'
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import axios from 'axios';
 const initialState ={
     EditCarData: {
         EditCars: [],
     },
     Data:{}
-}
+};
 const getEditData= createAsyncThunk('editdata/cars',async(payload)=>{
-    const token = localStorage.getItem ('toke_admin')
+    const token = localStorage.getItem ('toke_admin');
     const config = {
         headers:{
             access_token: token
         }
         
-    }
+    };
     try{
-        const getApi = await axios.get (`https://bootcamp-rent-cars.herokuapp.com/admin/car/${payload.id}`,config)
+        const getApi = await axios.get (`https://bootcamp-rent-cars.herokuapp.com/admin/car/${payload.id}`,config);
         // console.log(getApi.data);
-        return getApi.data
+        return getApi.data;
 
         
     }
@@ -25,26 +25,26 @@ const getEditData= createAsyncThunk('editdata/cars',async(payload)=>{
         console.log(error);
         throw error;
     }
-})
+});
 
 const editData= createAsyncThunk('edit/cars',async(payload)=>{
-    const token = localStorage.getItem ('access_token')
+    const token = localStorage.getItem ('toke_admin');
     const config = {
         headers:{
             access_token: token
         }
-    }
+    };
     try{
         const formData = new FormData ();
-        formData.append("id",payload.id)
-        formData.append("name",payload.name)
-        formData.append("category", payload.category)
-        formData.append("price",payload.price)
-        formData.append("status",payload.status)
-        formData.append("image", payload.image) 
-        const getApi = await axios.put (`https://bootcamp-rent-cars.herokuapp.com/admin/car/${payload.id}`,formData,config)
+        formData.append("id",payload.id);
+        formData.append("name",payload.name);
+        formData.append("category", payload.category);
+        formData.append("price",payload.price);
+        formData.append("status",payload.status);
+        formData.append("image", payload.image); 
+        const getApi = await axios.put (`https://bootcamp-rent-cars.herokuapp.com/admin/car/${payload.id}`,formData,config);
         // console.log(getApi.data);
-        return getApi.data
+        return getApi.data;
 
         
     }
@@ -52,7 +52,7 @@ const editData= createAsyncThunk('edit/cars',async(payload)=>{
         console.log(error);
         throw error;
     }
-})
+});
 
 
 const editSlice = createSlice({
@@ -60,24 +60,24 @@ const editSlice = createSlice({
     initialState,
     reducers: {
         setEditCar(state,action){
-            state.EditCarData = action.payload
+            state.EditCarData = action.payload;
             
         },
         setEdit(state,action){
-            state.EditCarData = action.payload
+            state.EditCarData = action.payload;
             
         }
     },
     extraReducers:(builder)=>{
         builder.addCase(getEditData.fulfilled,(state,action)=>{
-            state.Data = action.payload
+            state.Data = action.payload;
             
-        })
+        });
         builder.addCase(editData.fulfilled,(state,action)=>{
-            state.EditCarData = action.payload
+            state.EditCarData = action.payload;
             
-        })
+        });
     },
 });
-export {getEditData,editData}
-export default editSlice
+export {getEditData,editData};
+export default editSlice;

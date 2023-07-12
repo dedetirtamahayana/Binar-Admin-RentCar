@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import Navbar from "../../components/Navbar/Navbar";
 import { Col, Container, Row } from "react-bootstrap";
 import classes from "./Dashboard.module.css";
-import ChartDashboard from '../../components/Chart/Chart'
-import TableDashboard from '../../components/Table/Table'
+import ChartDashboard from '../../components/Chart/Chart';
+import TableDashboard from '../../components/Table/Table';
 
 const Dashboard = () => {
   return (
@@ -24,7 +24,7 @@ const Dashboard = () => {
       <br />
       <TableDashboard />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

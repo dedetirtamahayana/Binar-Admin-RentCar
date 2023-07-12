@@ -1,13 +1,13 @@
-import React from 'react'
-import {Card, Button,Modal,Col, Container, Row} from 'react-bootstrap';
+import React from 'react';
+import {Card, Button,Modal,Col, Container, Row, Form} from 'react-bootstrap';
 
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getCarsData, deleteCarData} from "../../store/actions/view-car-slice"
-import "./ViewCar.css"
+import {getCarsData, deleteCarData} from "../../store/actions/view-car-slice";
+import "./ViewCar.css";
 import { FaTrashAlt,FaEdit,FaPlus } from "react-icons/fa";
 import moment from 'moment';
-import modalImage from "../../assets/image/img-BeepBeep.png"
+import modalImage from "../../assets/image/img-BeepBeep.png";
 import { useNavigate } from 'react-router';
 import Navbar from "../../components/Navbar/Navbar";
 import classes from "./Dashboard.module.css";
@@ -16,55 +16,44 @@ import classes from "./Dashboard.module.css";
 const ViewCar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const dataCars = useSelector(state => state.viewcarStore.CarData)
-    const [deleteId, setDeleteId]=useState()
-    const [cars,setCars] = useState()
-    const [show, setShow] = useState(false)
+    const dataCars = useSelector(state => state.viewcarStore.CarData);
+    const [deleteId, setDeleteId]=useState();
+    const [cars,setCars] = useState('');
+    const [show, setShow] = useState(false);
     const LoadDetail = (id)=>{
         navigate('/edit-car/'+id);
-        }
+        };
     const handleTooAddCar = () =>{
-        navigate('/add-car/')
-    }
+        navigate('/add-car/');
+    };
     const handleClose = () =>{
-        setShow(false)
-    }
+        setShow(false);
+    };
     const handlecars = (ev) => {
-        ev.preventDefault()
-        setCars(ev.target.value)
-    }
+        ev.preventDefault();
+        setCars(ev.target.value);
+    };
     const HandleDelete = (id) => {
-        setDeleteId(id)
-        setShow(true)
+        setDeleteId(id);
+        setShow(true);
     
-    }
-    const handleDeleteItem = () =>{
-         dispatch(deleteCarData({id: deleteId}))
-            .unwrap()
-             .then(() => {
-                // alert ('data berhasil di hapus')
-                // navigate('/view-car');
-                // dispatch(getCarsData())
-                handleClose()
-                // dispatch(getCarsData())
-        })
-        .catch(() => {
+    };
+    const handleFilterData = () =>{
+        dispatch (getCarsData({cars}));
+    };
+    const handleDeleteItem = async () => {
+        try {
+            await dispatch(deleteCarData({id: deleteId}));
+            handleClose();
+            handleFilterData();
+        } catch (error) {
             console.log('error');
-        })
-    }
+        }
+    };
 
     useEffect(() => {
-        dispatch(getCarsData());
-    }, [])
-
-    useEffect(() => {
-        dispatch(getCarsData({cars}));
-    }, [cars])
-
-    // useEffect(() => {
-    //     console.log('ini data', dataCars.cars);
-    //     dispatch(getCarsData());
-    // }, [dataCars.cars])
+        handleFilterData();
+    }, [cars]);
 
     
     return ( 
@@ -86,42 +75,47 @@ const ViewCar = () => {
                     <strong>List Car</strong>
                 </h5>
                 <div className="d-flex justify-content-end">
-                <Button
-                    className={`pe-3 mb-2 fw-bold ${classes.btnAddCar}`}
-                    onClick={handleTooAddCar}>
-                    <FaPlus className='icon-btn-add'/>
-                    Add New Car
-                </Button>
+              
+                    <Button
+                        className={`pe-3 mb-2 fw-bold ${classes.btnAddCar}`}
+                        onClick={handleTooAddCar}>
+                        <FaPlus className='icon-btn-add'/>
+                        Add New Car
+                    </Button>
+                    </div>
+                      
+                <div className="d-grid gap-2 d-md-flex mb-3">
+                     <Form onSubmit={handleFilterData}>
+                        <Button 
+                            value=''
+                            type="submit"
+                            className='me-3 mb-2 btn-fillter-car'
+                            onClick={handlecars}>
+                            All
+                        </Button>
+                        <Button 
+                            value='small'
+                            type="submit"
+                            className='me-3 mb-2 btn-fillter-car'
+                            onClick={handlecars}>
+                            2 - 4 people
+                        </Button>
+                        <Button
+                            value='medium'
+                            type="submit"
+                            className='me-3 mb-2 btn-fillter-car'
+                            onClick={handlecars}>
+                            4 - 6 people
+                        </Button>
+                        <Button
+                            value='large'
+                            type="submit"
+                            className='me-3 mb-2 btn-fillter-car'
+                            onClick={handlecars}>
+                            6 - 8 people
+                        </Button>
+                    </Form>
                 </div>
-            <div className="d-grid gap-2 d-md-flex mb-3">
-                <Button 
-                    value=''
-                    className='me-3 mb-2 btn-fillter-car'
-                    onClick={handlecars}>
-                    All
-                </Button>
-                <Button 
-                    value='small'
-                    className='me-3 mb-2 btn-fillter-car'
-                    onClick={handlecars}>
-                    2 - 4 people
-                </Button>
-                <Button
-                    value='medium'
-                    className='me-3 mb-2 btn-fillter-car'
-                    onClick={handlecars}>
-                    4 - 6 people
-                </Button>
-                <Button
-                    value='large'
-                    className='me-3 mb-2 btn-fillter-car'
-                    onClick={handlecars}>
-                    6 - 8 people
-                </Button>
-                </div>
-            {/* <Button value="small" onClick={handlecars}>2-4</Button>
-            <Button value="medium" onClick={handlecars}>4-6</Button>
-            <Button value="large" onClick={handlecars}>6-8</Button> */}
             {dataCars
                 .cars
                 .map((item) => (
@@ -140,12 +134,12 @@ const ViewCar = () => {
                                     className='mx-2 card-btn'
                                     variant="outline-danger"
                                     onClick={() => {
-                                    HandleDelete(item.id)
+                                    HandleDelete(item.id);
                                 }}>
                                     <FaTrashAlt className='btn-icon'/> Delete
                                 </Button>
                                 <Button className='mx-2 card-btn' variant="outline-success " 
-                                onClick={()=>{LoadDetail(item.id)}}>
+                                onClick={()=>{LoadDetail(item.id);}}>
                                  <FaEdit className='btn-icon'/>   Edit
                                 </Button>
                             </Card.Body>
@@ -160,7 +154,7 @@ const ViewCar = () => {
             aria-labelledby="contained-modal-title-vcenter"
             centered>
             <Modal.Body className='text-center'>
-                <img src={modalImage} className='image-modal'></img>
+                <img src={modalImage} className='image-modal' alt='modal_image'></img>
                 <p className='fw-bold modal-text'>Menghapus Data Mobil</p>
                 <p className='modal-text'>Setelah dihapus, data mobil tidak dapat dikembalikan. Yakin ingin menghapus?</p>
                 <Button className='m-2 w-25' variant="outline-primary" onClick={handleDeleteItem}>Ya</Button>
@@ -172,7 +166,7 @@ const ViewCar = () => {
  
     </Container>
     </>
-    )
-}
+    );
+};
 
-export default ViewCar
+export default ViewCar;

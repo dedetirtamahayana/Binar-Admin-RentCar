@@ -30,3 +30,9 @@
     padding-bottom: 26px;
     margin: 0px;
 }
+.pagination-act{
+    background-color: red;
+}
+.pagination-off {
+    background-color: blue;
+}

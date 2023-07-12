@@ -1,68 +1,61 @@
-import React, {useState} from 'react'
-import './LoginAdmin.css'
-import loginadmin from '../../assets/image/loginadmin.png'
+import React, { useState } from "react";
+import "./LoginAdmin.css";
+import loginadmin from "../../assets/image/loginadmin.png";
+import audi from "../../assets/image/mini.jpg";
 import Logologin from "../../assets/image/logo2.svg";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import { loginAdmin } from '../../store/actions/admin-auth-slice';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginAdmin } from "../../store/actions/admin-auth-slice";
 import {
-    Form,
-    Button,
-    Row,
-    Col,
-    Toast,
-    ToastContainer,
-    ToastHeader,
-    ToastBody,
-  } from "react-bootstrap";
+  Form,
+  Button,
+  Row,
+  Col,
+  Toast,
+  ToastContainer,
+  ToastHeader,
+  ToastBody,
+} from "react-bootstrap";
 const LoginAdmin = () => {
-    const [inputEmail, setInputEmail] = useState();
-    const [inputPassword, setInputPassword] = useState();
-    const [isToastShow, setIsToastShow] = useState(false);
-    const [showmsg,setShowMsg] = useState ();
-    const [bgToast, setBgToast] = useState ();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-
-    const handleEmail = (e) => {
-        e.preventDefault();
-        setInputEmail(e.target.value);
-      };
-    
-      const hadlePassword = (e) => {
-        e.preventDefault();
-        setInputPassword(e.target.value);
-      };
-      const handleLogin = (e) => {
-        e.preventDefault();
-        console.log("login");
-        dispatch(loginAdmin({email: inputEmail, password: inputPassword}))
-          .unwrap()
-          .then(() => 
-          {
-            setBgToast ('info')
-            setShowMsg ('Selamat Anda Berhasil Login !!!')
-            setIsToastShow (true);
-            setTimeout(() => {
-              navigate("/dashboard");
-            }, 2000);
-          })
-          .catch((error)=>{
-            setBgToast ('danger')
-            setShowMsg ('Silahkan periksa email atau password anda ')
-            setIsToastShow(true);
-          });
-    
-      };
-
-
+  const [inputEmail, setInputEmail] = useState();
+  const [inputPassword, setInputPassword] = useState();
+  const [isToastShow, setIsToastShow] = useState(false);
+  const [showmsg, setShowMsg] = useState();
+  const [bgToast, setBgToast] = useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleEmail = (e) => {
+    e.preventDefault();
+    setInputEmail(e.target.value);
+  };
+  const hadlePassword = (e) => {
+    e.preventDefault();
+    setInputPassword(e.target.value);
+  };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(loginAdmin({ email: inputEmail, password: inputPassword }))
+      .unwrap()
+      .then(() => {
+        setBgToast("info");
+        setShowMsg("Selamat Anda Berhasil Login !!!");
+        setIsToastShow(true);
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+      })
+      .catch((error) => {
+        setBgToast("danger");
+        setShowMsg("Silahkan periksa email atau password anda ");
+        setIsToastShow(true);
+      });
+  };
   return (
     <section>
-        <Row>
+      <Row>
         <Col xs={6}>
           <ToastContainer className="p-3" position="top-center">
-            {[{bgToast}].map((variant, idx) => (
+            {[{ bgToast }].map((variant, idx) => (
               <Toast
                 className="d-inline-block m-1"
                 bg={bgToast}
@@ -74,7 +67,7 @@ const LoginAdmin = () => {
                 <ToastHeader>
                   <strong className="me-auto">Message</strong>
                 </ToastHeader>
-                <ToastBody className={variant === {bgToast} && "text-white"}>
+                <ToastBody className={variant === { bgToast } && "text-white"}>
                   {showmsg}
                 </ToastBody>
               </Toast>
@@ -82,18 +75,14 @@ const LoginAdmin = () => {
           </ToastContainer>
         </Col>
       </Row>
-    
-    <div className='container-fluid'>
-        <div className='row'>
-            <div className='login-left col-8'>
-                <img className="w-100" src={loginadmin} alt="" />
-
-            </div>
-            <div className='login-right col-4'>
-                <img src={Logologin} alt="BCR" className="login-logo" />
-                <h3 className='login-title'>
-                    Welcome, Admin BCR
-                </h3>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="login-left col-8">
+            <img className="w-100" src={audi} alt="" />
+          </div>
+          <div className="login-right col-4">
+            <img src={Logologin} alt="BCR" className="login-logo" />
+            <h3 className="login-title">Welcome, Admin BCR</h3>
             <Form onSubmit={handleLogin}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
@@ -103,7 +92,6 @@ const LoginAdmin = () => {
                   onChange={handleEmail}
                 />
               </Form.Group>
-
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -116,13 +104,11 @@ const LoginAdmin = () => {
                 Sign In
               </Button>
             </Form>
-
-            </div>
+          </div>
         </div>
+      </div>
+    </section>
+  );
+};
 
-    </div>
-</section>
-  )
-}
-
-export default LoginAdmin
+export default LoginAdmin;

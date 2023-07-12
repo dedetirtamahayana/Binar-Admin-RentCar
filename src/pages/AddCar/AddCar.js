@@ -2,19 +2,17 @@ import React, {useState} from "react";
 import {Form, Button, Col, Container, Row} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {addData} from "../../store/actions/add-slice"
+import {addData} from "../../store/actions/add-slice";
 import Navbar from "../../components/Navbar/Navbar";
 import iconUpload from "../../assets/image/fi_upload.svg";
-import './AddCar.css'
-const Carditem = () => {
+import './AddCar.css';
+const AddCar = () => {
     const [name,
         setName] = useState("");
     const [kategori,
         setKetegori] = useState("");
     const [price,
         setPrice] = useState("");
-    const [status,
-        setStatus] = useState("");
     const [image,
         setImage] = useState("");
     const dispatch = useDispatch();
@@ -39,14 +37,10 @@ const Carditem = () => {
         dispatch(addData({name: name, category: kategori, price: price, image: image}))
             .unwrap()
             .then(() => {
-                alert("succes tambah mobil")
-                // setBgToast ('info') setShowMsg ('Berhasil Login') setIsToastShow (true);
-                // setTimeout(() => {   navigate("/login") }, 2000);
+                alert("succes tambah mobil");
             })
             .catch((error) => {
-                // setBgToast ('danger') setShowMsg ('Silahkan di cek kembali email')
-                // setIsToastShow(true);
-                alert("gagal")
+                alert("gagal");
 
             });
     };
@@ -216,7 +210,7 @@ const Carditem = () => {
                 </div>
             </Form>
         </Container>
-    )
-}
+    );
+};
 
-export default Carditem
+export default AddCar;

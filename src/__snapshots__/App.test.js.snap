@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app.js should work as expected app.js should match with snapshot 1`] = `
+<section>
+  <div
+    className="row"
+  >
+    <div
+      className="col-6"
+    >
+      <div
+        className="toast-container position-absolute top-0 start-50 translate-middle-x p-3"
+      />
+    </div>
+  </div>
+  <div
+    className="container-fluid"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="login-left col-8"
+      >
+        <img
+          alt=""
+          className="w-100"
+          src="loginadmin.png"
+        />
+      </div>
+      <div
+        className="login-right col-4"
+      >
+        <img
+          alt="BCR"
+          className="login-logo"
+          src="logo2.svg"
+        />
+        <h3
+          className="login-title"
+        >
+          Welcome, Admin BCR
+        </h3>
+        <form
+          className=""
+          onSubmit={[Function]}
+        >
+          <div
+            className="mb-3"
+          >
+            <label
+              className="form-label"
+              htmlFor="formBasicEmail"
+            >
+              Email address
+            </label>
+            <input
+              className="form-control"
+              id="formBasicEmail"
+              onChange={[Function]}
+              placeholder="Enter email"
+              type="email"
+            />
+          </div>
+          <div
+            className="mb-3"
+          >
+            <label
+              className="form-label"
+              htmlFor="formBasicPassword"
+            >
+              Password
+            </label>
+            <input
+              className="form-control"
+              id="formBasicPassword"
+              onChange={[Function]}
+              placeholder="Password"
+              type="password"
+            />
+          </div>
+          <button
+            className="w-100 mb-3 btn btn-primary"
+            disabled={false}
+            type="submit"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+`;

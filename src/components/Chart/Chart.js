@@ -5,13 +5,13 @@ import Chart from "react-apexcharts";
 import { dataDashboard } from "../../store/actions/dashboard-slice";
 import {useSelector} from "react-redux";
 import moment from "moment/moment";
-import './Chart.css'
-import titlesquare from "../../assets/image/title-square.png"
+import './Chart.css';
+import titlesquare from "../../assets/image/title-square.png";
 const ChartDashboard = () => {
     const dispatch = useDispatch();
     const [startDateRent, setStartDateRent] = useState(`2022-01-01`);
     const [finishDateRent, setFinishDateRent] = useState(`2022-01-31`);
-    const data = useSelector(state => state.dashboardStore.dashboardData)
+    const data = useSelector(state => state.dashboardStore.dashboardData);
     const months = [
         { id: 1, name: "January" },
         { id: 2, name: "February" },
@@ -26,43 +26,20 @@ const ChartDashboard = () => {
         { id: 11, name: "November" },
         { id: 12, name: "December" },
       ];
-    const handledataDashboard = (e) => {
-        // e.preventDefault();
+    const handledataDashboard = (e) => {;
         console.log("data");
-        dispatch(dataDashboard({from:startDateRent, until:finishDateRent}))
-          .unwrap()
-          .then(() => 
-          {
-            
-          })
+        dispatch(dataDashboard({from:startDateRent, until:finishDateRent}));
       };
     useEffect(()=>{
         handledataDashboard();
-    },[])
-    // useEffect(()=>{
-    //     dispatch(getDataChart());
-    // }, [dispatch]);
-      
-    // const series = [
-    //     {
-    //         name: "series-1",
-    //         data: data.map((item)=>item.orderCount)
-    //       }
-    // ];
-    // const options = {
-    //     chart: {
-    //         id: "simple-bar"
-    //     },
-    //     xaxis: {
-    //         data: data.map((item)=>item.day)
-    //     }
-    // };
+    },[]);
+
     const options= {
           chart: {
             id: "simple-bar"
           },
           xaxis: {
-            categories: data.map((item)=>moment(item.day, 'YYYY-MM-DD') .format("DD")),
+            categories: data.map((item)=>moment(item.day, 'YYYY-MM-DD').format("DD")),
             title :{
                 text: 'Date',
                 style: {
@@ -94,19 +71,19 @@ const ChartDashboard = () => {
                 colors:['#586B90']
             }
           }
-        }
+        };
         const series = [
           {
             name: "Count",
             data: data.map((item)=>item.orderCount)
           }
-        ]
+        ];
     return (
         <div className="container chart-section">
             <div className="row">
                 {/* <p>{data.dashboardData.length && data.dashboardData [0].day}</p> */}
                 <Col>
-                    <img  className="text-img "src={titlesquare}></img>
+                    <img  className="text-img "src={titlesquare} alt="title-img"></img>
                     <p className="fw-bold title-img">Rented Car Data Visualization</p>
                     <Col className='detailSelect'>Month</Col>
                     <Form className="d-flex mb-5" >
@@ -137,7 +114,7 @@ const ChartDashboard = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ChartDashboard
+export default ChartDashboard;
